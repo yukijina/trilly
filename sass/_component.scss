@@ -265,10 +265,12 @@
         font-size: 2.25rem;
         font-weight: 300;
         margin-bottom: -3px;
+
     }
 
     &__rating-count {
-        
+        font-size: .8rem;
+        text-transform: uppercase;
     }
 }
 
@@ -278,7 +280,7 @@
     border: none;
     color: var(--color-primary);
     font-size: inherit;
-    border-bottom: 1px solid currentColor;
+    border-bottom: var(--line);
     padding-bottom: 2px;
     display: inline-block;
     background-color: tranparent;
@@ -314,4 +316,78 @@
     100% {
         transform: scale(1);
     }
+}
+
+// Paragraph
+.paragraph:not(:last-child) {
+  margin-bottom: 2rem;
+}
+
+
+// List
+.list {
+  list-style: none;
+  margin: 3rem 0;
+  border-top: var(--line);
+  border-bottom: var(--line);
+
+  display: flex;
+  // list paragraph wrap - but side by side by adding &__item flex-basis(width) 50%
+  flex-wrap: wrap;
+
+  &__item {
+    flex: 0 0 50%;
+    margin-bottom: .7rem;
+  }
+
+  &__item::before {
+    content: "";
+    display: inline-block;
+    height: 1rem;
+    width: 1rem;
+    margin-right: .7rem;
+
+    // Older Browser
+    // background-image: url(../img/chevron-thin-right.svg);
+    // background-size: cover;
+
+    //Newer browsers - masks - change the background image, we can't change the color but it is possible using "mask"
+    background-color: var(--color-primary);
+    -webkit-mask-image: url(../img/chevron-thin-right.svg);
+    -webkit-mask-size: cover;
+    mask-image: url(../img/chevron-thin-right.svg);
+    mask-size: cover;
+  }
+}
+
+
+//Recommend
+.recommend {
+  font-size: 1.3rem;
+  color: var(--color-grey-light-3);
+
+  display: flex;
+  align-items: center;
+
+  &__count {
+    //create space between boxes.
+    margin-right: auto;
+  }
+
+  &__friends {
+
+  }
+
+  &__photo {
+    //border is added to the image (image is not shurink)
+    box-sizing: content-box;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%; 
+    border: 3px solid #fff;
+
+    &:not(:last-child) {
+      margin-right: -1.5rem;
+    }
+  }
 }
