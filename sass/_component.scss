@@ -462,3 +462,74 @@
 
 }
 
+//CALL TO ACTION
+.cta {
+  padding: 3.5rem 0;
+  text-align: center;
+
+  &__book-now {
+    font-size: 2rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+}
+
+// CALL TO ACTION
+.btn {
+  font-size: 1.5rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  border-radius: 100px;
+  border: none;
+  background-image: linear-gradient(to right, var(--color-primary-light), var(--color-primary-dark));
+  color: #fff;
+  position: relative;
+  //invisible btn text is overflow. So setting by overflow: hidden, we can hide the invisible button
+  //the code bleow, text color is white so you can't see the btn before setting overflow but if you change tht color to red, you can see the btn.
+  overflow: hidden;
+  cursor: pointer;
+
+  // btn's child (&__visible and &__invisible)
+  & > * {
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    transition: all .2s;
+  }
+
+  &__visible {  
+    padding: 2rem 7.5rem;
+  }
+
+  &__invisible {
+    display: inline-block;
+    //same padding as the above - but text overflow so set 0 to the vertical padding
+    padding: 2rem 0;
+    position: absolute;
+    left: 0;
+    // this makes button moves up exactly the same size of the button
+    top: -100%;
+  }
+
+  &:hover {
+    background-image: linear-gradient(to left, var(--color-primary-light), var(--color-primary-dark));
+  }
+
+  &:hover &__visible {
+    //this time, we don't use position absolute.
+    //hight for btn is set 100%. So it transition 100% height.
+    transform: translateY(100%);
+  }
+
+  &:hover &__invisible {
+      top: 0;
+  }
+  
+  &:focus {
+    outline: none;
+    animation: pulsate 1s infinite;
+  }
+
+}
+
