@@ -16,6 +16,16 @@
     // cross - vertical line
     align-items: center;
 
+    @media only screen and (max-width: $bp-smallest) {
+      // we move search bar at the end.
+      // In order to move this search bar to the next row, we set .header (_layout) to  "flex-wrap: wrap"
+      order: 1;
+      //search bar actually does not go to next raw at 500px so we increase the size of search bar to 100%
+      flex: 0 0 100%;
+      // if you want to make entire search bar to grey light color
+      // background-color: var(--color-grey-light-2);
+    }
+
     &__input {
         font-family: inherit;
         font-size: inherit;
@@ -55,6 +65,7 @@
         &:active {
             transform: translateY(2px);
         }
+
     }
 
 
@@ -132,11 +143,25 @@
     list-style: none;
     margin-top: 3.5rem;
 
+    @media only screen and (max-width: $bp-medium) {
+      display: flex;
+      margin: 0;
+    }
+
     &__item {
         position: relative;
 
         &:not(:last-child) {
             margin-bottom: .5rem;
+
+            @media only screen and (max-width: $bp-medium) {
+              margin: 0;
+             }
+        }
+
+        @media only screen and (max-width: $bp-medium) {
+          // expands all tht items (navigation) as much as possible
+         flex: 1;
         }
     }
 
@@ -179,6 +204,17 @@
         display: flex;
         align-items: center;
 
+        @media only screen and (max-width: $bp-medium) {
+          justify-content: center;
+          padding: 2rem;
+         }
+
+
+        @media only screen and (max-width: $bp-small) {
+          flex-direction: column;
+          padding: 1.5rem 5rem;
+         }
+
     }
 
     &__icon {
@@ -187,6 +223,14 @@
         margin-right: 2rem;
         //color is current parent color
         fill: currentColor;
+
+
+        @media only screen and (max-width: $bp-small) {
+          margin-right: 0;
+          margin-bottom: .7rem;
+          width: 1.5rem;
+          height: 1.5rem;
+         }
     }
 }
 
@@ -197,6 +241,10 @@
     color: var(--color-grey-light-4);
     text-align: center;
     padding: 2.5rem;
+
+    @media only screen and (max-width: $bp-medium) {
+      display: none;
+    }
 }
 
 // Gallery
@@ -223,6 +271,12 @@
         text-transform: uppercase;
         letter-spacing: 1px;
         padding: 1.5rem 3rem;
+
+
+        @media only screen and (max-width: $bp-small) {
+          font-size: 1.8rem;
+          padding: 1.25rem 2rem;
+         }
     }
 
     &__stars {
@@ -259,6 +313,11 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+
+
+        @media only screen and (max-width: $bp-small) {
+          padding: 0 1.5rem;
+         }
     }
 
     &__rating-average {
@@ -266,11 +325,20 @@
         font-weight: 300;
         margin-bottom: -3px;
 
+
+        @media only screen and (max-width: $bp-small) {
+          font-size: 1.8rem;
+         }
+
     }
 
     &__rating-count {
         font-size: .8rem;
         text-transform: uppercase;
+
+        @media only screen and (max-width: $bp-small) {
+          font-size: .5em;
+         }
     }
 }
 
@@ -360,11 +428,14 @@
     // background-size: cover;
 
     //Newer browsers - masks - change the background image, we can't change the color but it is possible using "mask"
-    background-color: var(--color-primary);
-    -webkit-mask-image: url(../img/chevron-thin-right.svg);
-    -webkit-mask-size: cover;
-    mask-image: url(../img/chevron-thin-right.svg);
-    mask-size: cover;
+    @supports ( -webkit-mask-image: url()) or (mask-image: url()) {
+      background-color: var(--color-primary);
+      -webkit-mask-image: url(../img/chevron-thin-right.svg);
+      -webkit-mask-size: cover;
+      mask-image: url(../img/chevron-thin-right.svg);
+      mask-size: cover;
+      background-image: none;
+    } 
   }
 }
 
@@ -383,7 +454,7 @@
   }
 
   &__friends {
-
+    display: flex;
   }
 
   &__photo {
@@ -395,7 +466,7 @@
     border: 3px solid #fff;
 
     &:not(:last-child) {
-      margin-right: -1.5rem;
+      margin-right: -2rem;
     }
   }
 }
@@ -408,6 +479,11 @@
   margin-bottom: 3.5rem;
   position: relative;
   overflow: hidden;
+
+  @media only screen and (max-width: $bp-medium) {
+    padding: 2rem;
+    margin-bottom: 3rem;
+   }
 
   &__text {
     margin-bottom: 2rem;
@@ -466,6 +542,10 @@
 .cta {
   padding: 3.5rem 0;
   text-align: center;
+
+  @media only screen and (max-width: $bp-medium) {
+    padding: 2.5rem 0;
+   }
 
   &__book-now {
     font-size: 2rem;
